@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: magick8sball
+  name: magick8sball
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: magick8sball
+  strategy:
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: magick8sball
+    spec:
+      containers:
+      - name: web
+        image: jmsearcy/magick8sball.com
+        ports:
+          - containerPort: 80
+            protocol: TCP
+      - name: api
+        image: jmsearcy/magick8sball
+        ports:
+          - containerPort: 8080
+            protocol: TCP
+

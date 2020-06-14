@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    certmanager.k8s.io/cluster-issuer: letsencrypt-production
+    kubernetes.io/ingress.class: nginx
+  labels:
+    app: magick8sball
+  name: magick8sball
+  namespace: magick8sball
+spec:
+  rules:
+  - host: magick8sball.com
+    http:
+      paths:
+      - backend:
+          serviceName: magick8sball-svc
+          servicePort: web
+        path: /
+  tls:
+  - hosts:
+    - magick8sball.com
+    secretName: magick8sball-cert
