@@ -1,17 +1,17 @@
-REGISTRY ?= $(USER)
+REGISTRY ?= jmsearcy
 IMAGE ?= magick8sball
 TAG ?= latest
 
 build: jekyll-build
 	docker build -t $(REGISTRY)/$(IMAGE):$(TAG) ./magick8sball
-	docker build -t $(REGISTRY)/$(IMAGE).io:$(TAG) .
+	docker build -t $(REGISTRY)/$(IMAGE).com:$(TAG) .
 
 push: push-docker
-	$(MAKE) REGISTRY=deislabs push-docker
+	$(MAKE) REGISTRY=jmsearcy push-docker
 
 push-docker: build
 		docker push $(REGISTRY)/$(IMAGE):$(TAG)
-		docker push $(REGISTRY)/$(IMAGE).io:$(TAG)
+		docker push $(REGISTRY)/$(IMAGE).com:$(TAG)
 
 run:
 	@echo "Go to http://localhost and shake the magick8sball"
@@ -33,6 +33,6 @@ jekyll-watch:
 		-v `pwd`/vendor/bundle:/usr/local/bundle \
 		jekyll/jekyll jekyll serve
 
-deploy:
-	az group deployment create -g magick8sball --template-file aci-hack.json
-	az group deployment create -g magick8sball --template-file aci.json
+#deploy:
+#	az group deployment create -g magick8sball --template-file aci-hack.json
+#	az group deployment create -g magick8sball --template-file aci.json

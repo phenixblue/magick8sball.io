@@ -1,1 +1,3 @@
-module github.com/deislabs/magick8sball.io/magick8sball
+module magick8sball
+
+go 1.14

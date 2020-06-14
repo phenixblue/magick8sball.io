@@ -1,7 +1,7 @@
 version: "3"
 services:
   web:
-    image: ${REGISTRY}/${IMAGE}.io:latest
+    image: ${REGISTRY}/${IMAGE}.com:latest
     ports:
       - "80:80"
     networks:
